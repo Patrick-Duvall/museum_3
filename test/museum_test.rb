@@ -85,7 +85,6 @@ class MuseumTest < Minitest::Test
     bill = Patron.new("Bill", 3)
     bill.add_interest("Dead Sea Scrolls")
 
-    require "pry"; binding.pry
     museum.admit(tom)
     assert_equal 10, tom.spending_money
     museum.admit(lucy)

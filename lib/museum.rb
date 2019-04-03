@@ -15,14 +15,11 @@ class Museum
 
   def admit(patron)
     @patrons << patron
-    # require "pry"; binding.pry
-    attending = @exhibits.sort_by{|el|el.cost}.reverse
-    # require "pry"; binding.pry
-    attending.each do |exhibit|
+    will_attend = @exhibits.sort{|ex1,ex2|ex2.cost <=> ex1.cost}
+    will_attend.each do |exhibit|
       if recommend_exhibits(patron).include?(exhibit)
         if patron.spending_money >= exhibit.cost
-          patron.spending_money -= exhibit.cost
-          @revenue +=exhibit.cost
+          patron.spending_money -= exhibit.cost ; @revenue +=exhibit.cost 
         end
       end
     end
